@@ -1,0 +1,361 @@
+{% extends "base.html" %}
+
+{% block title %}Home | Alkarawchi Recruitment{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero-section">
+
+    <div class="overlay"></div>
+
+    <div class="container hero-content">
+
+        <div class="row">
+
+            <div class="col-lg-7">
+
+                <h1>
+                    Connecting Talent<br>
+                    With Leading Employers
+                </h1>
+
+                <p>
+                    Professional Recruitment & HR Solutions
+                    Across Oman and GCC Countries
+                </p>
+
+                <a href="{{ url_for('jobs.jobs') }}" class="btn btn-primary btn-lg">
+                    Explore Jobs
+                </a>
+
+                <a href="{{ url_for('website.contact') }}" class="btn btn-outline-light btn-lg ms-2">
+                    Contact Us
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- SERVICES -->
+
+<section class="py-5">
+
+<div class="container">
+
+<div class="text-center mb-5">
+
+<h2 class="fw-bold">
+Our Services
+</h2>
+
+<p class="text-muted">
+Professional Recruitment Solutions
+</p>
+
+</div>
+
+<div class="row g-4">
+
+<div class="col-md-3">
+
+<div class="card h-100 shadow-sm text-center p-4">
+
+<h3>👨‍💼</h3>
+
+<h5>Recruitment</h5>
+
+<p>
+Finding qualified professionals for every industry.
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card h-100 shadow-sm text-center p-4">
+
+<h3>🌍</h3>
+
+<h5>Overseas Hiring</h5>
+
+<p>
+International manpower solutions for GCC employers.
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card h-100 shadow-sm text-center p-4">
+
+<h3>📋</h3>
+
+<h5>HR Consultancy</h5>
+
+<p>
+Professional HR support and recruitment planning.
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card h-100 shadow-sm text-center p-4">
+
+<h3>🚀</h3>
+
+<h5>Executive Search</h5>
+
+<p>
+Specialized recruitment for senior management positions.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- WHY US -->
+
+<section class="bg-light py-5">
+
+<div class="container">
+
+<div class="row">
+
+<div class="col-lg-6">
+
+<h2 class="fw-bold mb-4">
+
+Why Choose Alkarawchi?
+
+</h2>
+
+<ul class="list-group list-group-flush">
+
+<li class="list-group-item">
+✔ Experienced Recruitment Team
+</li>
+
+<li class="list-group-item">
+✔ Trusted by Employers
+</li>
+
+<li class="list-group-item">
+✔ GCC Recruitment Specialists
+</li>
+
+<li class="list-group-item">
+✔ Fast Hiring Process
+</li>
+
+<li class="list-group-item">
+✔ Professional Candidate Screening
+</li>
+
+</ul>
+
+</div>
+
+<div class="col-lg-6 text-center">
+
+<img src="{{ url_for('static', filename='images/about.jpg') }}"
+class="img-fluid rounded shadow">
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ========================= -->
+<!-- LATEST JOBS -->
+<!-- ========================= -->
+
+<section class="latest-jobs py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="section-title">Latest Job Opportunities</h2>
+
+            <p class="text-muted">
+                Find your next career opportunity with Alkarawchi Recruitment
+            </p>
+
+        </div>
+
+        <div class="row">
+
+            {% for job in latest_jobs %}
+
+            <div class="col-lg-4 col-md-6 mb-4">
+
+                <div class="job-card">
+
+                    <div class="job-header">
+
+                        <div class="job-icon">
+                            💼
+                        </div>
+
+                        <span class="salary-badge">
+                            {{ job.salary }}
+                        </span>
+
+                    </div>
+
+                    <h4 class="mt-3">
+                        {{ job.title }}
+                    </h4>
+
+                    <p class="text-muted mb-1">
+                        📍 {{ job.location }}
+                    </p>
+
+                    <p class="text-muted">
+                        🏷 {{ job.category }}
+                    </p>
+
+                    <hr>
+
+                    <div class="d-flex justify-content-between">
+
+                        <a href="{{ url_for('jobs.job_details', id=job.id) }}"
+                           class="btn btn-primary">
+
+                            Details
+
+                        </a>
+
+                        <a href="{{ url_for('jobs.apply', job_id=job.id) }}"
+                           class="btn btn-warning">
+
+                            Apply
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        <div class="text-center mt-4">
+
+            <a href="{{ url_for('jobs.jobs') }}"
+               class="btn btn-outline-primary btn-lg">
+
+                View All Jobs
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- STATISTICS -->
+
+<section class="bg-primary text-white py-5">
+
+<div class="container">
+
+<div class="row text-center">
+
+<div class="col-md-3">
+
+<h2>500+</h2>
+
+<p>Employers</p>
+
+</div>
+
+<div class="col-md-3">
+
+<h2>1200+</h2>
+
+<p>Candidates</p>
+
+</div>
+
+<div class="col-md-3">
+
+<h2>300+</h2>
+
+<p>Jobs Filled</p>
+
+</div>
+
+<div class="col-md-3">
+
+<h2>15+</h2>
+
+<p>Years Experience</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section class="py-5 text-center">
+
+<div class="container">
+
+<h2 class="fw-bold mb-3">
+
+Looking for the Right Talent?
+
+</h2>
+
+<p class="lead">
+
+Partner with Alkarawchi Recruitment today.
+
+</p>
+
+<a href="{{ url_for('website.contact') }}"
+class="btn btn-warning btn-lg">
+
+Contact Us
+
+</a>
+
+</div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,309 @@
+{% extends "base.html" %}
+
+{% block title %}About Us | Alkarawchi Recruitment{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+
+<section class="page-header">
+
+    <div class="overlay"></div>
+
+    <div class="container text-center page-header-content">
+
+        <h1>About Alkarawchi Recruitment</h1>
+
+        <p>
+            Connecting employers with exceptional talent across Oman and the GCC.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- COMPANY -->
+
+<section class="py-5">
+
+<div class="container">
+
+<div class="row align-items-center">
+
+<div class="col-lg-6">
+
+<img src="{{ url_for('static', filename='images/about.jpeg') }}"
+class="img-fluid rounded shadow">
+
+</div>
+
+<div class="col-lg-6">
+
+<h2 class="section-title mb-4">
+
+Who We Are
+
+</h2>
+
+<p>
+
+Alkarawchi Recruitment is a professional recruitment and manpower
+solutions company serving businesses throughout Oman and the GCC.
+
+</p>
+
+<p>
+
+We specialize in sourcing highly qualified professionals across
+engineering, construction, hospitality, healthcare, finance,
+administration and industrial sectors.
+
+</p>
+
+<p>
+
+Our mission is to help employers hire faster while helping job seekers
+find meaningful career opportunities.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- MISSION -->
+
+<section class="bg-light py-5">
+
+<div class="container">
+
+<div class="row">
+
+<div class="col-md-4">
+
+<div class="card h-100 shadow border-0 text-center p-4">
+
+<div class="display-4 mb-3">🎯</div>
+
+<h3>Mission</h3>
+
+<p>
+
+Deliver professional recruitment solutions that create long-term value
+for employers and candidates.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card h-100 shadow border-0 text-center p-4">
+
+<div class="display-4 mb-3">👁</div>
+
+<h3>Vision</h3>
+
+<p>
+
+Become one of the leading recruitment companies in Oman and the Gulf
+region.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card h-100 shadow border-0 text-center p-4">
+
+<div class="display-4 mb-3">🤝</div>
+
+<h3>Values</h3>
+
+<p>
+
+Integrity, professionalism, transparency and commitment to excellence.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- WHY US -->
+
+<section class="py-5">
+
+<div class="container">
+
+<div class="text-center mb-5">
+
+<h2 class="section-title">
+
+Why Choose Us
+
+</h2>
+
+</div>
+
+<div class="row g-4">
+
+<div class="col-md-3">
+
+<div class="feature-box">
+
+<div class="feature-icon">✔</div>
+
+<h5>Experienced Team</h5>
+
+<p>Recruitment specialists with strong industry knowledge.</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="feature-box">
+
+<div class="feature-icon">⚡</div>
+
+<h5>Fast Hiring</h5>
+
+<p>Quick recruitment process for employers.</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="feature-box">
+
+<div class="feature-icon">🌍</div>
+
+<h5>GCC Network</h5>
+
+<p>Access to qualified candidates across the region.</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="feature-box">
+
+<div class="feature-icon">🏆</div>
+
+<h5>Quality Service</h5>
+
+<p>Professional recruitment with long-term partnerships.</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- STATS -->
+
+<section class="stats-section">
+
+<div class="container">
+
+<div class="row text-center">
+
+<div class="col-md-3">
+
+<h2>500+</h2>
+
+<p>Employers</p>
+
+</div>
+
+<div class="col-md-3">
+
+<h2>1200+</h2>
+
+<p>Candidates</p>
+
+</div>
+
+<div class="col-md-3">
+
+<h2>300+</h2>
+
+<p>Jobs Filled</p>
+
+</div>
+
+<div class="col-md-3">
+
+<h2>15+</h2>
+
+<p>Years Experience</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section class="py-5 text-center">
+
+<div class="container">
+
+<h2 class="fw-bold">
+
+Let's Build Your Future Together
+
+</h2>
+
+<p class="lead">
+
+Whether you are hiring or looking for your next career opportunity,
+Alkarawchi Recruitment is here to help.
+
+</p>
+
+<a href="{{ url_for('website.contact') }}"
+class="btn btn-warning btn-lg">
+
+Contact Us
+
+</a>
+
+</div>
+
+</section>
+
+{% endblock %}

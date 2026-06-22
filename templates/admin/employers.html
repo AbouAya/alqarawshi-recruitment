@@ -1,0 +1,77 @@
+{% extends "admin_base.html" %}
+
+{% block title %}Employers{% endblock %}
+
+{% block page_title %}
+Employers
+{% endblock %}
+
+{% block content %}
+
+<div class="card shadow border-0">
+
+    <div class="card-header bg-white">
+
+        <h4 class="mb-0">Registered Employers</h4>
+
+    </div>
+
+    <div class="card-body">
+
+        {% if employers %}
+
+        <table class="table table-hover">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Company</th>
+                    <th>Contact Person</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for employer in employers %}
+
+                <tr>
+
+                    <td>{{ employer.id }}</td>
+
+                    <td>{{ employer.company_name }}</td>
+
+                    <td>{{ employer.contact_person }}</td>
+
+                    <td>{{ employer.email }}</td>
+
+                    <td>{{ employer.phone }}</td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        {% else %}
+
+        <div class="alert alert-info">
+
+            No employers registered yet.
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

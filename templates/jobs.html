@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+
+{% block title %}Jobs | Alkarawchi Recruitment{% endblock %}
+
+{% block content %}
+
+<!-- PAGE HEADER -->
+
+<section class="page-header">
+
+    <div class="overlay"></div>
+
+    <div class="container page-header-content text-center">
+
+        <h1>Find Your Dream Job</h1>
+
+        <p>Browse our latest career opportunities.</p>
+
+    </div>
+
+</section>
+
+<!-- SEARCH -->
+
+<section class="search-section">
+
+<div class="container">
+
+<form method="GET">
+
+<div class="row g-3">
+
+<div class="col-lg-4">
+
+<input
+type="text"
+class="form-control form-control-lg"
+name="keyword"
+placeholder="Job title..."
+value="{{ request.args.get('keyword','') }}"
+>
+
+</div>
+
+<div class="col-lg-3">
+
+<input
+type="text"
+class="form-control form-control-lg"
+name="location"
+placeholder="Location"
+value="{{ request.args.get('location','') }}"
+>
+
+</div>
+
+<div class="col-lg-3">
+
+<input
+type="text"
+class="form-control form-control-lg"
+name="category"
+placeholder="Category"
+value="{{ request.args.get('category','') }}"
+>
+
+</div>
+
+<div class="col-lg-2 d-grid">
+
+<button class="btn btn-primary btn-lg">
+
+Search
+
+</button>
+
+</div>
+
+</div>
+
+</form>
+
+</div>
+
+</section>
+
+<!-- JOBS -->
+
+<section class="py-5">
+
+<div class="container">
+
+<div class="row">
+
+{% for job in jobs %}
+
+<div class="col-lg-4 col-md-6 mb-4">
+
+<div class="job-card">
+
+<div class="job-header">
+
+<div class="job-icon">
+
+💼
+
+</div>
+
+<span class="salary-badge">
+
+{{ job.salary }}
+
+</span>
+
+</div>
+
+<h3 class="mt-3">
+
+{{ job.title }}
+
+</h3>
+
+<p>
+
+📍 {{ job.location }}
+
+</p>
+
+<p>
+
+🏷 {{ job.category }}
+
+</p>
+
+<p>
+
+🕒 {{ job.job_type }}
+
+</p>
+
+<hr>
+
+<div class="d-flex justify-content-between">
+
+<a
+href="{{ url_for('jobs.job_details', id=job.id) }}"
+class="btn btn-primary">
+
+Details
+
+</a>
+
+<a
+href="{{ url_for('jobs.apply', job_id=job.id) }}"
+class="btn btn-warning">
+
+Apply
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+{% else %}
+
+<div class="text-center py-5">
+
+<h3>No jobs available.</h3>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</section>
+
+{% endblock %}

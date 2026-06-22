@@ -1,0 +1,133 @@
+{% extends "admin_base.html" %}
+
+{% block title %}Jobs Management{% endblock %}
+
+{% block page_title %}
+Jobs Management
+{% endblock %}
+
+{% block content %}
+
+<div class="card shadow border-0">
+
+    <div class="card-header bg-white d-flex justify-content-between align-items-center">
+
+        <h4 class="mb-0">Available Jobs</h4>
+
+        <a href="{{ url_for('admin.add_job') }}" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Add Job
+        </a>
+
+    </div>
+
+    <div class="card-body">
+
+        <input
+            type="text"
+            id="searchJob"
+            class="form-control mb-4"
+            placeholder="Search job...">
+
+        <table class="table table-hover align-middle" id="jobsTable">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Title</th>
+
+                    <th>Location</th>
+
+                    <th>Category</th>
+
+                    <th>Type</th>
+
+                    <th>Salary</th>
+
+                    <th width="170">Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for job in jobs %}
+
+                <tr>
+
+                    <td>{{ job.id }}</td>
+
+                    <td>{{ job.title }}</td>
+
+                    <td>{{ job.location }}</td>
+
+                    <td>{{ job.category }}</td>
+
+                    <td>
+
+                        <span class="badge bg-primary">
+
+                            {{ job.job_type }}
+
+                        </span>
+
+                    </td>
+
+                    <td>{{ job.salary }}</td>
+
+                    <td>
+
+                        <a href="{{ url_for('admin.edit_job', id=job.id) }}"
+                           class="btn btn-warning btn-sm">
+
+                            <i class="bi bi-pencil"></i>
+
+                        </a>
+
+                        <a href="{{ url_for('admin.delete_job', id=job.id) }}"
+                           class="btn btn-danger btn-sm"
+                           onclick="return confirm('Delete this job?')">
+
+                            <i class="bi bi-trash"></i>
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script>
+
+document.getElementById("searchJob").addEventListener("keyup", function(){
+
+    let value = this.value.toLowerCase();
+
+    let rows = document.querySelectorAll("#jobsTable tbody tr");
+
+    rows.forEach(function(row){
+
+        row.style.display =
+            row.innerText.toLowerCase().includes(value)
+            ? ""
+            : "none";
+
+    });
+
+});
+
+</script>
+
+{% endblock %}

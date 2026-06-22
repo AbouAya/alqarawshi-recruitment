@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <h2 class="mb-4">
+        Request Manpower
+    </h2>
+
+    <form method="POST">
+
+        <div class="mb-3">
+            <input type="text"
+                   name="company_name"
+                   class="form-control"
+                   placeholder="Company Name"
+                   required>
+        </div>
+
+        <div class="mb-3">
+            <input type="text"
+                   name="contact_person"
+                   class="form-control"
+                   placeholder="Contact Person"
+                   required>
+        </div>
+
+        <div class="mb-3">
+            <input type="text"
+                   name="phone"
+                   class="form-control"
+                   placeholder="Phone Number"
+                   required>
+        </div>
+
+        <div class="mb-3">
+            <input type="email"
+                   name="email"
+                   class="form-control"
+                   placeholder="Email"
+                   required>
+        </div>
+
+        <div class="mb-3">
+            <input type="text"
+                   name="position_required"
+                   class="form-control"
+                   placeholder="Required Position"
+                   required>
+        </div>
+
+        <div class="mb-3">
+            <input type="number"
+                   name="workers_needed"
+                   class="form-control"
+                   placeholder="Number of Workers Needed"
+                   required>
+        </div>
+
+        <div class="mb-3">
+            <textarea name="notes"
+                      class="form-control"
+                      rows="4"
+                      placeholder="Additional Requirements"></textarea>
+        </div>
+
+        <button class="btn btn-success">
+            Submit Request
+        </button>
+
+    </form>
+
+    <a href="https://wa.me/968XXXXXXXX?text=Hello%20I%20want%20to%20request%20workers%20for%20my%20company"
+       class="btn btn-success mt-3"
+       target="_blank">
+       Contact via WhatsApp
+    </a>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "admin_base.html" %}
+
+{% block title %}Edit Job{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5 pt-5">
+
+    <div class="card shadow">
+
+        <div class="card-header">
+            <h3>Edit Job</h3>
+        </div>
+
+        <div class="card-body">
+
+            <form method="POST">
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+                        <label>Job Title</label>
+                        <input type="text" name="title" class="form-control"
+                               value="{{ job.title }}" required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Location</label>
+                        <input type="text" name="location" class="form-control"
+                               value="{{ job.location }}">
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Salary</label>
+                        <input type="text" name="salary" class="form-control"
+                               value="{{ job.salary }}">
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Category</label>
+                        <input type="text" name="category" class="form-control"
+                               value="{{ job.category }}">
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Job Type</label>
+
+                        <select name="job_type" class="form-select">
+
+                            <option {% if job.job_type=="Full Time" %}selected{% endif %}>Full Time</option>
+                            <option {% if job.job_type=="Part Time" %}selected{% endif %}>Part Time</option>
+                            <option {% if job.job_type=="Contract" %}selected{% endif %}>Contract</option>
+                            <option {% if job.job_type=="Temporary" %}selected{% endif %}>Temporary</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <label>Description</label>
+                        <textarea class="form-control"
+                                  name="description"
+                                  rows="6">{{ job.description }}</textarea>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <label>Requirements</label>
+                        <textarea class="form-control"
+                                  name="requirements"
+                                  rows="6">{{ job.requirements }}</textarea>
+                    </div>
+
+                </div>
+
+                <button class="btn btn-success">
+                    Update Job
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

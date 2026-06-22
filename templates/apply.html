@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <h2>Job Application</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <input name="full_name" class="form-control mb-2" placeholder="Full Name">
+
+        <input name="email" class="form-control mb-2" placeholder="Email">
+
+        <input name="phone" class="form-control mb-2" placeholder="Phone"
+        required>
+
+        <div class="mb-3">
+            <label>Upload CV</label>
+            <input type="file"
+                   name="cv"
+                   class="form-control"
+                   required>
+        </div>
+
+        <input name="position" class="form-control mb-2" placeholder="Position Applying For">
+
+        <label>Upload CV (PDF/DOCX)</label>
+        <input type="file" name="cv" class="form-control mb-3">
+
+        <button class="btn btn-success">Submit Application</button>
+
+    </form>
+
+</div>
+
+{% endblock %}
