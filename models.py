@@ -25,26 +25,35 @@ class User(UserMixin, db.Model):
 # Employers
 # ============================
 
+from werkzeug.security import generate_password_hash, check_password_hash
+
 class Employer(db.Model):
     __tablename__ = "employers"
 
     id = db.Column(db.Integer, primary_key=True)
 
     company_name = db.Column(db.String(200), nullable=False)
-
-    contact_person = db.Column(db.String(120))
+    contact_person = db.Column(db.String(120), nullable=False)
 
     email = db.Column(db.String(120), unique=True, nullable=False)
-
     phone = db.Column(db.String(50))
 
-    password = db.Column(db.String(255))
+    password_hash = db.Column(db.String(255), nullable=False)
 
     website = db.Column(db.String(200))
-
-    logo = db.Column(db.String(200))
+    logo = db.Column(db.String(255))
 
     address = db.Column(db.String(250))
+    city = db.Column(db.String(100))
+    country = db.Column(db.String(100))
+
+    industry = db.Column(db.String(120))
+    company_size = db.Column(db.String(80))
+
+    description = db.Column(db.Text)
+
+    approved = db.Column(db.Boolean, default=False)
+    active = db.Column(db.Boolean, default=True)
 
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
@@ -54,6 +63,12 @@ class Employer(db.Model):
         lazy=True,
         cascade="all, delete"
     )
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+    return check_password_hash(self.password_hash, password)
     
 class Job(db.Model):
 
