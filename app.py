@@ -36,7 +36,6 @@ if __name__ == "__main__":
     app.run(debug=True)
  
 from models import User
-from extensions import db
 
 with app.app_context():
 
@@ -58,6 +57,10 @@ with app.app_context():
         db.session.commit()
 
         print("Admin account created.")
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
 
     
 
