@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, session
 from werkzeug.utils import secure_filename
 import os
 
@@ -6,6 +6,82 @@ from extensions import db
 from models import Employer
 
 employer_bp = Blueprint("employer", __name__)
+
+@employer_bp.route("/employer/login", methods=["GET", "POST"])
+def login():
+
+    if request.method == "POST":
+
+        employer = Employer.query.filter_by(
+            email=request.form["email"]
+        ).first()
+
+        if employer is None:
+
+            flash("Invalid email.", "danger")
+            return redirect(url_for("employer.login"))
+
+        if not employer.check_password(request.form["password"]):
+
+            flash("Incorrect password.", "danger")
+            return redirect(url_for("employer.login"))
+
+        if not employer.approved:
+
+            flash(
+                "Your company is awaiting admin approval.",
+                "warning"
+            )
+            return redirect(url_for("employer.login"))
+
+        if not employer.active:
+
+            flash(
+                "Your account has been disabled.",
+                "danger"
+            )
+            return redirect(url_for("employer.login"))
+
+        session["employer_id"] = employer.id
+
+        flash(
+            f"Welcome {employer.company_name}",
+            "success"
+        )
+
+        return redirect(url_for("employer.dashboard"))
+
+    return render_template("employer/login.html")
+
+@employer_bp.route("/employer/logout")
+def logout():
+
+    session.pop("employer_id", None)
+
+    flash("Logged out successfully.", "success")
+
+    return redirect(url_for("website.home"))
+
+@employer_bp.route("/employer/dashboard")
+def dashboard():
+
+    if "employer_id" not in session:
+
+        return redirect(url_for("employer.login"))
+
+    employer = Employer.query.get_or_404(
+        session["employer_id"]
+    )
+
+    jobs = Job.query.filter_by(
+        employer_id=employer.id
+    ).all()
+
+    return render_template(
+        "employer/dashboard.html",
+        employer=employer,
+        jobs=jobs
+    )
 
 @employer_bp.route("/employer/register", methods=["GET", "POST"])
 def register():

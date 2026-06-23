@@ -114,6 +114,22 @@ def candidates():
         candidates=candidates,
     )
 
+@admin_bp.route("/admin/employer/<int:id>/approve")
+@login_required
+def approve_employer(id):
+
+    employer = Employer.query.get_or_404(id)
+
+    employer.approved = True
+
+    db.session.commit()
+
+    flash(
+        "Employer approved successfully.",
+        "success"
+    )
+
+    return redirect(url_for("admin.employers"))
 
 # -------------------------
 # Employers

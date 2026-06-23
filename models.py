@@ -30,7 +30,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 class Employer(db.Model):
     __tablename__ = "employers"
 
-    id = db.Column(db.Integer, primary_key=True)
+    employer_id = db.Column(db.Integer, db.ForeignKey("employers.id"), nullable=False)
 
     company_name = db.Column(db.String(200), nullable=False)
     contact_person = db.Column(db.String(120), nullable=False)
@@ -94,7 +94,8 @@ class Job(db.Model):
 
     employer_id = db.Column(
         db.Integer,
-        db.ForeignKey("employers.id")
+        db.ForeignKey("employers.id"),
+        nullable=False
     )
 
     applications = db.relationship(
@@ -102,6 +103,16 @@ class Job(db.Model):
         backref="job",
         lazy=True,
         cascade="all, delete"
+    )
+    
+    status = db.Column(
+        db.String(20),
+        default="Active"
+    )
+    
+    created_at = db.Column(
+        db.DateTime,
+        default=datetime.utcnow
     )
         
 class Candidate(db.Model):
